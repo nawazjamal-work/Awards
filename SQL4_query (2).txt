@@ -1,0 +1,502 @@
+https://www.w3schools.com/sql/sql_join_right.asp
+
+Partition is SCAN
+
+Group by is Rollup
+
+
+
+1. Find second highest salary for each department
+
+select * from (select deptno,name,salary,dense_rank() over(partition by deptno order by salary) as rank from DEPARTMENTS1)   where rank=2;
+
+RANK gives you the ranking within your ordered partition. Ties are assigned the same rank, with the next ranking(s) skipped. So, if you have 3 items at rank 2, the next rank listed would be ranked 5.
+DENSE_RANK again gives you the ranking within your ordered partition, but the ranks are consecutive. No ranks are skipped if there are ranks with multiple items
+
+2. Second highest salary in table
+
+select * from (select deptno,name,salary,dense_rank() over(order by salary) as rank from DEPARTMENTS1)   where rank=2;
+select MAX(Salary) from Employee WHERE Salary NOT IN (select MAX(Salary) from Employee );
+
+SELECT MAX(SALARY) FROM Employee WHERE SALARY < (SELECT MAX(SALARY) FROM Employee);
+
+3. To find first record from the table 
+
+Select * from DEPARTMENTS1 where Rowid =(select min(Rowid) from DEPARTMENTS1);
+Select * from Employee where Rownum =1;
+
+4. To find the last record in the table
+
+Select * h
+5. You can use ROWNUM to limit the number of rows returned by a query, as in this example:
+
+SELECT * FROM employees WHERE ROWNUM < 10;
+
+6. To select 7nth record from the table
+
+select * from (select DEPARTMENTS1.*, rownum rnum from DEPARTMENTS1) where rnum =7
+
+7. Query to find duplicate row
+
+select a.* from DEPARTMENTS1 a where rowid != (select max(rowid) from DEPARTMENTS1 b where  a.name =b.name);
+
+select prod_id, count(*) from DEPARTMENTS1 group by prod_id having count(*)>1
+
+8. Query to delete duplicate row
+
+Delete from DEPARTMENTS1 a where rowid !=  (select max(rowid) from DEPARTMENTS1 b where  a.Employee_num =b.Employee_num);
+
+
+8) Without rowid finding a duplicate in table
+
+select country, count(*) from your_table group by country having count(*) >1
+
+9. How to create a table which has same structure  or how to create duplicate table.
+ 
+Create table Employee_1 as Select * from Employee;                    //Data Copied.
+Create table Employee_1 as Select * from Employee where 1=2;          //No Data Copied.
+ 
+10. Scenario of Self Join
+ 
+Select e.employee_name,m.employee_name from Employee e,Employee m where e.Employee_id=m.Manager_id;
+ 
+11. How to find db_name
+ 
+SELECT Ora_Database_Name FROM DUAL;
+ 
+12. To select only even rows 
+
+Select * from (select DEPARTMENTS1.*, rownum rnum from DEPARTMENTS1) where mod(rnum,2) =0
+ 
+13. How to find current date
+
+select sysdate from dual
+
+14. Can you get the list of employees with same salary? Another Example of Self Join
+
+select distinct e.empid,e.empname,e.salary
+from employee e, employee e1
+where e.salary =e1.salary
+and e.empid != e1.empid
+
+15. generate sequence number from 1 to 100
+
+Select Rownum r
+From dual
+Connect By Rownum <= 1006
+
+16. How to fetch common records from two table.
+
+Select name from DEPARTMENTS1_NEW INTERSECT  Select name from DEPARTMENTS1
+
+17.Which operator is used in query for pattern matching?
+
+LIKE operator is used for pattern matching, and it can be used as -.
+
+% - Matches zero or more characters.
+_(Underscore) – Matching exactly one character.
+Example -.
+
+Select * from DEPARTMENTS1 where name like 'm%'
+Select * from DEPARTMENTS1 where name like 'mohsi_'
+
+18. What is the command used to fetch first 5 characters of the string?
+
+Select SUBSTR(name,1,5) as name_new from DEPARTMENTS1
+
+SYNTAX:
+
+update TBL set Nmbr = case when Nmbr = 0 then Nmbr+2 else Nmbr+3 end;
+
+SELECT u.user_id, count( user_training_id ) AS count
+  FROM users u JOIN training_details t ON t.user_id = u.user_id
+  GROUP BY u.user_id,username,training_id,training_date
+  HAVING count( user_training_id ) > 1
+  ORDER BY training_date DESC;
+    
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+
+UPDATE table_nam87
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+
+[charlist] - Defines sets and ranges of characters to match
+[^charlist] or [!charlist] - Defines sets and ranges of characters NOT to match
+
+SELECT OrderID, Quantity,
+CASE
+    WHEN Quantity > 30 THEN "The quantity is greater than 30"
+    WHEN Quantity = 30 THEN "The quantity is 30"
+    ELSE "The quantity is under 30"
+END 
+FROM OrderDetails;
+
+CREATE PROCEDURE SelectAllCustomers
+AS
+SELECT * FROM Customers
+GO;
+EXEC SelectAllCustomers;
+
+ALTER TABLE table_name ADD column_name datatype;
+
+21.Display first 50% records from Employee table?
+
+Select rownum,E.* from Employee E where rownum<=(Select count(*/2) from Employee);
+
+22.Display last 50% records from Employee table?
+
+Select rownum,E.* from Employee E
+minus
+Select rownum,E.* from Employee E where rownum<=(Select count(*/2) from Employee);
+
+23.How to get distinct records from the table without using distinct keyword.
+
+select * from Employee a where  rowid = (select max(rowid) from Employee b where  a.Employee_no=b.Employee_no);
+
+24. What is Query to display last 5 Records from Employee table?
+
+select * from (Select * from Employee e order by rowid desc) where rownum <=5;
+
+25.Display 4 to 7 records from Employee table.
+
+Select * from (Select rownum as ‘No_of_Row’, E.* from Employee E) Where No_of_Row between 4 and 7;
+
+26.How to find count of duplicate rows? (95% asked in SQL queries for Interviews )
+
+Select rollno, count (rollno) from Student
+Group by rollno
+Having count (rollno)>1
+Order by count (rollno) desc;
+
+27. Get FIRST_NAME ,Joining year,Joining Month and Joining Date from employee table
+
+SQL Queries in Oracle, Select FIRST_NAME, to_char(joining_date,'YYYY') JoinYear , to_char(joining_date,'Mon'), to_char(joining_date,'dd') from EMPLOYEE
+
+SQL Queries in SQL Server, select SUBSTRING (convert(varchar,joining_date,103),7,4) , SUBSTRING (convert(varchar,joining_date,100),1,3) , SUBSTRING (convert(varchar,joining_date,100),5,2) from EMPLOYEE
+
+SQL Queries in MySQL, select year(joining_date),month(joining_date), DAY(joining_date) from EMPLOYEE
+
+
+
+inner join :-SELECT pz.CompanyCity, pz.CompanyName, pz.CompanyId AS PizzaCompanyId, f.CompanyID AS FoodsCompanyId, f.ItemName, f.UnitsSold
+FROM PizzaCompany pz
+INNER JOIN Foods f 
+ON pz.CompanyId = f.CompanyId
+
+
+SELECT pz.CompanyId, pz.CompanyCity, pz.CompanyName,f.ItemName, f.UnitsSold,
+w.WaterParkLocation
+FROM PizzaCompany pz
+INNER JOIN Foods f ON pz.CompanyId = f.CompanyId
+INNER JOIN WaterPark w ON w.CompanyId = pz.CompanyId
+ORDER BY pz.CompanyId
+
+
+SELECT pz.CompanyCity, pz.CompanyName, SUM(f.UnitsSold) AS TotalQuantitySold
+FROM PizzaCompany pz
+INNER JOIN Foods f ON pz.CompanyId = f.CompanyId
+GROUP BY pz.CompanyCity, pz.CompanyName
+ORDER BY pz.CompanyCity
+
+
+SELECT e.EmployeeKey, e.FirstName, e.Title, e.HireDate,
+fs.SalesAmountQuota FROM DimEmployee e
+INNER JOIN FactSalesQuota fs
+ON e.EmployeeKey = fs.EmployeeKey
+
+Full outer join :-
+
+SELECT column_name(s)
+FROM table1
+FULL OUTER JOIN table2
+ON table1.column_name = table2.column_name
+WHERE condition;
+
+
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID
+ORDER BY Customers.CustomerName;
+
+
+Left outer join :-
+
+
+SELECT column_name(s)
+FROM table1
+LEFT JOIN table2
+ON table1.column_name = table2.column_name;
+
+
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+ORDER BY Customers.CustomerName;
+
+Right outer join :-
+
+SELECT column_name(s)
+FROM table1
+RIGHT JOIN table2
+ON table1.column_name = table2.column_name;
+
+SELECT Orders.OrderID, Employees.LastName, Employees.FirstName
+FROM Orders
+RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+ORDER BY Orders.OrderID;
+
+to find the employee with highest bonus :-
+
+select top 1 emp_ref_id, sum(bonus_amount) as total bonus from bonus
+group by emp_ref_id order by total_bonus desc;
+
+
+delete all duplicate records from the table :- 
+
+with EmployeeCTE As
+(
+  select *, ROW_NUMBER()OVER(PARTITION BY ID ORDER BY ID) AS RowNumber
+  from Employees
+)
+ Delete from EmployeeCTE Where RowNumber > 1\
+
+
+
+============================================================================
+
+
+Below queries are asked in the interviews frequently
+
+1) To find the nth row of a table :-
+
+Select *from employee where rowid = (select max(rowid) from employee where rownum <= 4);
+
+                              Or
+
+Select *from employee where rownum <= 4 minus select *from employee where rownum <= 3;
+
+2) To find duplicate rows :-
+
+Select *from employee where rowid in (select max(rowid) from employee group by empno, ename, mgr, job, hiredate, comm, deptno, sal);
+
+  							Or
+
+Select empno,ename,sal,job,hiredate,comm , count(*) from employee group by empno,ename,sal,job,hiredate,comm  having count(*) >=1; 
+
+3) To delete duplicate rows :-
+
+Delete from employee where rowid in (select max(rowid) from employee group by empno,ename,mgr,job,hiredate,sal,comm,deptno);
+
+How to Identify Duplicate Rows
+
+SELECT EMPNAME, DEPT, CONTACTNO, CITY, 
+COUNT(*) FROM DETAILS
+GROUP BY EMPNAME, DEPT, CONTACTNO, CITY
+HAVING COUNT(*)>1
+
+
+
+4) To find the count of duplicate rows :-
+
+Select ename, count() from employee group by ename having count() >= 1;
+
+5) How to display alternative rows in a table :-
+
+select *from employee where (rowid,0) in (select rowid,mod(rownum,2) from employee );
+
+6) Getting employee details of each department who is drawing maximum sal :-
+
+select *from employee where (deptno,sal) in (select deptno,max(sal) from employee group by deptno);
+
+7) How to get number of employees in each department , in which department is having more than 2500 employees :-
+
+Select deptno,count() from employee group by deptno having count() >2500;
+
+8) To reset the time to the beginning of the day :-
+
+ Select to_char(trunc(sysdate),’dd-mon-yyyy hh:mi:ss am’) from dual;
+
+9) To find nth maximum sal :-
+
+Select *from employee where sal in (select max(sal) from (select *from emp order by sal) where rownum <= 5);
+
+
+
+data correction :-
+
+select product_item from prod
+minus
+select product_item from prod_detail_dim
+
+data duplication :- 
+
+select pincode, pd_code, count(*) from pro_detail_dim group by pincode, pd_code having count(*)>1
+
+
+data not null :-
+
+select * from prod_detail_dim where product_item is null 
+
+Removing Special Characters in SQL :-
+
+
+UPDATE mytable
+SET FieldName = REPLACE(FieldName, '/', '');
+
+
+Using Regular Expressions
+
+For more complex scenarios, you can use regular expressions to remove all special characters.
+
+SELECT REGEXP_REPLACE(columnName, '[^a-zA-Z0-9 ]', '') AS cleaned_column
+FROM tableName;
+
+difference between count(*),count(1),count(column),and count(distinct)
+
+-count(*) and count(1) count all rows, including NULL's.
+-count(column)count only non-NULL values in that column.
+-count(DISTINCT column) count unique, non-NULL values, ignoring duplicates.
+
+this small difference saved me from future mistakes and confusion. i use COUNT almost every day now- and you should too!
+
+
+Null check:- 
+select count(*) from table where "column" is null
+
+distinct check :- 
+select count(distinct column) from table 
+pattern check :-
+select * from table where column like '%pattern_value%'
+
+Minimum Length check:-
+select length(case(min(column)as text)) from table
+
+Maximum Length check:-
+select length(case(max(column)as text)) from table
+
+Minimum Value check :-
+select min(column) from table
+
+Maximum Value check :-
+select max(column) from table
+
+Blank check :-
+select count(*) from table where column=''
+
+
+
+How would you fetch all employees whose first_name starts with a vowel (A, E, I, O, U) in SQL?
+🔹 Option 1: LIKE 'A%' OR 'E%' OR 'I%' OR 'O%' OR 'U%'
+ 🔹 Option 2: LEFT(first_name, 1) IN ('A','E','I','O','U')
+ 🔹 Option 3: SUBSTR(first_name, 1, 1) IN ('A','E','I','O','U')
+ 🔹 Option 4: REGEXP_LIKE(first_name, '^[AEIOU]')
+💡 Commonly used in data validation, cleansing, and ETL testing.
+
+
+window functions :-
+
+1. ROW_NUMBER()
+Use Case: Assign a unique row number to each record per partition.
+
+SELECT *, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rank
+FROM employees;
+
+2. RANK()
+Use Case: Give ranks to rows with ties.
+
+SELECT *, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS dept_rank
+FROM employees;
+
+3. DENSE_RANK()
+Use Case: Like RANK but without gaps between tied ranks.
+
+SELECT *, DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS rank_dense
+FROM employees;
+
+
+4. NTILE(n)
+Use Case: Divide rows into n roughly equal buckets.
+
+SELECT name, salary, NTILE(4) OVER (ORDER BY salary DESC) AS salary_quartile
+FROM employees;
+
+
+5. LAG()
+Use Case: Access data from a previous row.
+
+SELECT name, salary, LAG(salary) OVER (ORDER BY hire_date) AS previous_salary
+FROM employees;
+
+
+6. LEAD()
+Use Case: Access data from the next row.
+
+SELECT name, salary, LEAD(salary) OVER (ORDER BY hire_date) AS next_salary
+FROM employees;
+
+
+7. FIRST_VALUE()
+Use Case: Get the first value in an ordered window.
+
+SELECT name, department, salary, FIRST_VALUE(salary) OVER (PARTITION BY department ORDER BY salary DESC) AS top_salary
+FROM employees;
+
+
+8. LAST_VALUE()
+Use Case: Get the last value in an ordered window.
+
+SELECT name, department, salary, LAST_VALUE(salary) OVER (PARTITION BY department ORDER BY salary DESC ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS bottom_salary
+FROM employees;
+
+9. NTH_VALUE()
+Use Case: Get the nth value in a window.
+
+SELECT name, salary, NTH_VALUE(salary, 2) OVER (ORDER BY salary DESC ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS second_highest
+FROM employees;
+
+
+10. CUME_DIST()
+Use Case: Cumulative distribution: proportion of rows with values less than or equal.
+
+SELECT name, salary, CUME_DIST() OVER (ORDER BY salary) AS cum_dist
+FROM employees;
+
+
+
+11. PERCENT_RANK()
+Use Case: Relative percentile of a value.
+
+SELECT name, salary, PERCENT_RANK() OVER (ORDER BY salary) AS pct_rank
+FROM employees;
+
+
+12. SUM() OVER()
+Use Case: Rolling or cumulative sum.
+
+SELECT name, salary, SUM(salary) OVER (ORDER BY hire_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_total
+FROM employees;
+
+
+
+13. AVG() OVER()
+Use Case: Moving average over a window of rows.
+
+SELECT name, salary, AVG(salary) OVER (ORDER BY hire_date ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS avg_recent
+FROM employees;
+
+
+14. MAX() / MIN() OVER()
+Use Case: Find max or min over a rolling window.
+
+SELECT name, salary, MAX(salary) OVER (PARTITION BY department) AS max_salary
+FROM employees;
+
+
+15. Custom Aggregates with PARTITION BY and ORDER BY
+Use Case: Combine window functions for complex analytics (e.g., cohort analysis).
+
+SELECT customer_id, purchase_date, SUM(amount) OVER (PARTITION BY customer_id ORDER BY purchase_date) AS cumulative_spend
+FROM purchases;
+
+

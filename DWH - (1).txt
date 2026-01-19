@@ -1,0 +1,87 @@
+DWH :-
+
+what is data modelling ?
+What is the basic concept of data warehousing?
+What is the fact table?
+What is Dimension table ? 
+Types of Dimension table ?
+what is Data Mart ? Data mining and Data Lake
+What is Star Schema?
+What is a snowflake schema?
+* What is the difference between SCD 1 and SCD 2 and SCD 3?
+* difference between full load and incremental load ?
+
+ETL test :- 
+
+what are all effective ETL testing process. 
+
+
+SQL thery :-
+
+ What is a primary key?
+What is a unique key?
+What is the difference between UNIQUE and PRIMARY KEY constraints?
+difference between MINUS vs INTERSECT ?
+difference between inner join vs INTERSECT ?
+What is the Difference Between Cross Join and Inner Join? 
+ What is a stored procedure?
+11. What is the difference between DELETE, TRUNCATE and DROP commands?
+14. What does UNION do? What is the difference between UNION and UNION ALL?
+
+
+sql query :-
+
+Query to find duplicate row
+ Query to delete duplicate row
+finding a duplicate records in table
+16. How to fetch common records from two table.
+17.Which operator is used in query for pattern matching?
+23.How to get distinct records from the table without using distinct keyword.
+
+
+Using GROUP BY
+
+The GROUP BY clause groups rows with the same values, effectively removing duplicates.
+
+SELECT column1, column2
+FROM your_table
+GROUP BY column1, column2;
+
+
+
+Using ROW_NUMBER() with CTE
+
+The ROW_NUMBER() function assigns a unique number to each row within a partition. Filtering rows with ROW_NUMBER = 1 ensures uniqueness.
+
+WITH cte AS (
+SELECT column1, column2,
+ROW_NUMBER() OVER (PARTITION BY column1, column2 ORDER BY column1) AS row_num
+FROM your_table
+)
+SELECT column1, column2
+FROM cte
+WHERE row_num = 1;
+
+Using UNION
+
+The UNION operator combines result sets and removes duplicates automatically.
+
+SELECT column1, column2
+FROM your_table
+UNION
+SELECT column1, column2
+FROM your_table;
+
+
+
+Using INTERSECT
+
+The INTERSECT operator returns only the rows that appear in both result sets, ensuring uniqueness.
+
+SELECT column1, column2
+FROM your_table
+INTERSECT
+SELECT column1, column2
+FROM your_table;
+
+

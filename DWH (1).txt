@@ -1,0 +1,110 @@
+* data warehouse:-
+
+a large store of data accumulated from a wide range of sources within a company and used to guide management decisions
+
+* What do you mean by data warehouse :-
+
+Data warehousing is the process of collecting, integrating, storing and managing data from multiple sources in a central repository. It enables organizations to organize large volumes of current and historical data for efficient querying, analysis and reporting.
+* Data warehouse concept :-
+
+Data warehouse is a relational database that is designed for query and analysis rather than for transaction processing. It usually contains historical data derived from transaction data, but can include data from other sources.
+
+what is data modelling ?
+
+data modelling or data structuring is actually denoting the type of data and the business logic and control the data
+and that is know as the data modelling can also be called as data structuring.
+
+what is Data Modelling concept ?
+
+it has three levels :-
+
+1)Conseptual Model. Being the scope of model, It help to describe the semantics of a domain.
+2)Logical Model. In these model there are descriptions of tables columns object oriented classes, XML tags, Documents structures
+3)Physical Model. These models cares about the actual physical structure to store the data, like partitions CPU spaces Replication shards etc..
+
+What is the basic concept of data warehousing?
+
+A data warehouse is a type of data management system that is designed to enable and support business intelligence (BI) activities, especially analytics. Data warehouses are solely intended to perform queries and analysis and often contain large amounts of historical data.
+
+
+* What is data warehouse in ETL?
+
+Extract, transform, and load (ETL) is the process of combining data from multiple sources into a large, central repository called a data warehouse. ETL uses a set of business rules to clean and organize raw data and prepare it for storage, data analytics, and machine learning (ML).
+
+
+* What is need of data warehouse?
+
+The need for Data Warehouse is to store clean data that can be directly used by Data Analysts, companies, Data Scientists, and other team members.
+
+
+* What is the fact table?
+
+Fact table is the central table in the star schema of a data warehouse, and it is stores quantitative information for analysis and it is often denormalized. Fact table works with the dimension table and it holds the data to be analysed. Also, a fact table consists of two types of columns. (i) foreign keys column, and (ii) measures columns. Foreign keys column allows joins with dimension tables, and the measures columns contain the data to be analyzed.
+
+* What is Dimension table ? 
+
+Dimension is a structure that is categorizes facts and measures in order to enable users to answer the business questions. Commonly used dimensions are people, products, place and time.
+
+Dimension table or dimension entity is a table or entity in a star, snowflake, or star flake schema that stores details about the facts. For example, a Time dimension table stores the various aspects of time such as year, quarter, month, and day.
+
+
+Types of Dimension table ?
+
+Major Types of Dimensions in a Data Warehouse
+
+Slowly Changing Dimension
+Conformed Dimension
+Degenerate Dimension
+Junk Dimension
+Role-playing Dimension
+Static Dimension
+Shrunken Dimension
+
+* Data Mart :-
+
+Data mart is a simple form of a data warehouse that is focused on a single subject or line of business, such as sales, finance, or marketing. Given their focus on data marts to draw data from fewer sources than data warehouses.
+
+* Data mining :-
+
+Data mining is the process of sorting through large data sets to identify patterns and relationships that can help solve business problems through data analysis. Data mining techniques and tools enable enterprises to predict future trends and make more-informed business decisions.
+
+* Data Lake :-
+
+Data lake is a centralized repository designed to store, process, and secure large amounts of structured, semistructured, and unstructured data. It can store data in its native format and process any variety of it, ignoring size limits. Learn more about modernizing your data lake on Google Cloud.
+
+
+* What is Star Schema?
+
+Star schema is a multi-dimensional data model used to organize data in a database so that it is easy to understand and analyze. Star schemas can be applied to data warehouses, databases, data marts, and other tools. The star schema design is optimized for querying large data sets.
+
+* What is a snowflake schema?
+
+Snowflake schema is a multi-dimensional data model that is an extension of a star schema, where dimension tables are broken down into subdimensions. Snowflake schemas are commonly used for business intelligence and reporting in OLAP data warehouses, data marts, and relational databases.
+
+In a snowflake schema, engineers break down individual dimension tables into logical subdimensions. This makes the data model more complex, but it can be easier for analysts to work with, especially for certain data types.
+
+It's called a snowflake schema because its entity-relationship diagram (ERD) looks like a snowflake, as seen below.
+
+* What is the difference between SCD 1 and SCD 2 and SCD 3?
+
+* Type 1 Slowly Changing Dimension: This method overwrites the existing value with the new value and does not retain history. 
+
+* Type 2 Slowly Changing Dimension: This method adds a new row for the new value and maintains the existing row for historical and reporting purposes.
+
+* Type 3 Slowly Changing Dimension: stores two versions of values for certain selected level attributes. Each record stores the previous value and the current value of the selected attribute. When the value of any of the selected attributes changes, the current value is stored as the old value and the new value becomes the current value.
+
+
+* difference between full load and incremental load ?*
+
+During a full load, the entire data is processed on each run whereas during an incremental load, an Audit Field, is specified on the basis of which, the Database source reads the incremented data only. The Incremental and full load options can be found in properties of Database source object.
+
+What is data modelling in ETL?
+
+Data modelling analyses data objects and figures out the relationships between them. It generates a theoretical representation of data objects — vendors or customers in SaaS databases — and how to store objects in a system, defining the rules for the relationship between tables.
+
+What do you mean by OLAP?
+Online analytical processing (OLAP) is software technology you can use to analyse business data from different points of view. Organizations collect and store data from multiple data sources, such as websites, applications, smart meters, and internal systems.
+
+
+What do you mean by OLTP?
+OLTP (Online Transactional Processing) is a data processing type that executes transaction-focused tasks such as inserting, deleting, or updating database data. It is often used for financial transactions, order entry, retail sales and CRM.

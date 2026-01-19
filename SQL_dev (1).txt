@@ -1,0 +1,111 @@
+9952190549
+
+
+CREATE TABLE EMPLOYEE(  
+    Empid number,  
+    First_name varchar2(20),  
+    Last_name varchar2(20),  
+    Email_id varchar2(50),  
+    Location varchar2(20),  
+    Gender char(1),  
+    Mobile_number char(10),  
+    Dateofjoining date default sysdate,  
+    Dept int)
+
+
+alter table EMPLOYEE ADD DOB date
+
+alter table EMPLOYEE ADD (salary number (10,2), grade varchar2(20)
+
+alter table EMPLOYEE ADD(salary number(10,2), grade varchar2(20))
+
+alter table EMPLOYEE modify Dept Varchar2(20)
+
+alter table EMPLOYEE drop column Dept
+
+
+create table Capgemini_table( 
+    Emp_name varchar2(20) constraint Emp_name not null, 
+    Emp_id number constraint Emp_id not null)
+
+
+alter table EMPLOYEE modify First_name varchar2(20) constraint First_name_NM not null
+
+alter table EMPLOYEE modify Last_name varchar2(20) constraint Last_name_NU not null
+
+
+alter table EMPLOYEE modify Email_id varchar2(50) constraint Email_id_NM not null
+
+
+alter table EMPLOYEE modify Mobile_number char(10) constraint Mobile_number_nm not null
+
+alter table EMPLOYEE modify dob date constraint dob_NM not null
+
+alter table EMPLOYEE add constraint EMPLOYEE_Email_id_uk unique(Email_id);
+alter table EMPLOYEE add constraint EMPLOYEE_Mob_Nbr_uk unique(Mobile_Number);
+
+alter table EMPLOYEE add constraint Employee_pk primary key(EMPID)
+
+alter table EMPLOYEE add constraint Emp_Gender_ck check(GENDER in('M','F'));
+
+
+alter table EMPLOYEE add constraint Emp_dept_Rel foreign key(DEPT_ID) references Department(DEPT_ID) on delete set null;
+
+
+
+
+Create table user_constraints(owner varchar2(120),
+    constraint_name varchar2(30),
+    constraint_type varchar2(1),
+    table_name varchar2(30),
+    search_condition long,
+    r_owner varchar2(120),
+    r_constraint_name varchar2(30),
+    default_rule varchar2(9),
+    status varchar2(8),
+    deferrable varchar2(14),
+    deferred varchar2(9),
+    vaidated varchar2(13),
+    generated varchar2(14),
+    bad varchar2(3),
+    rely varchar2(4),
+    last_change date,
+    index_owner varchar2(30),
+    index_name varchar2(30),
+    invalid varchar2(7),
+    view_related varchar2(14));
+
+
+Create table Warehouses (Empid number(3),
+    First_name varchar2(20),
+    Last_name varchar2(20),
+    Emailid varchar2(50),
+    Gender char(1),
+    MobileNum char(10),
+    DateofJoine date,
+    Dept_id number);
+
+
+
+alter table Warehouses modify Empid number(3) constraint Warehouses_Empid_NM not null;
+alter table Warehouses modify First_name varchar2(20) constraint Warehouses_Fist_NM not null;
+alter table Warehouses modify Last_name varchar2(20) constraint Warehouses_Last_NM not null;
+
+
+insert into Warehouses values ('209', 'haroon', 'Ahmed', 'haroon@website.com', 
+    'M', '9894200787', sysdate, '009');
+
+select * from Warehouses where rowid=(select min(rowid) from Warehouses);
+select * from Warehouses where rowid=(select max(rowid) from Warehouses);
+
+select a.* from Warehouses a where rowid != (select max(rowid) from Warehouses b where a.First_name = b.First_name);
+
+delete from Warehouses a where rowid != (select max(rowid) from Warehouses b where a.First_name = b.First_name);
+
+select * from Warehouses;
+
+select * from Warehouses;
+
+alter table Warehouses add constraint Wareh_Gender_CK check(GENDER in('M','F'));
+
+

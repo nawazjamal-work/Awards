@@ -1,0 +1,243 @@
+﻿which sql statement removes all rows but not the table structure ?
+a)truncate ---- correct
+b)delete
+c)drop
+d)clear
+
+1. What is a Database?
+
+Database is nothing but an organized form of data for easy access, storing, retrieval and managing of data. This is also known as structured form of data which can be accessed in many ways.
+
+Example: School Management Database, Bank Management Database.
+
+2. What is DBMS?
+
+A Database Management System (DBMS) is a program that controls creation, maintenance and use of a database. DBMS can be termed as File Manager that manages data in a database rather than saving it in file systems.
+
+3. What is RDBMS?
+
+RDBMS stands for Relational Database Management System. RDBMS store the data into the collection of tables, which is related by common fields between the columns of the table. It also provides relational operators to manipulate the data stored into the tables.
+
+Example: SQL Server.
+
+4. What is SQL?
+
+SQL stands for Structured Query Language , and it is used to communicate with the Database. This is a standard language used to perform tasks such as retrieval, updation, insertion and deletion of data from a database.
+
+Standard SQL Commands are Select.
+
+5. What is a primary key?
+
+A primary key is a combination of fields which uniquely specify on row. This is a special kind of unique key, and it has implicit NOT NULL constraint. It means, Primary key values cannot be NULL.
+
+6. What is a unique key?(Unique key  help to avoid duplicate value in multiple rows)
+
+A Unique key constraint uniquely identified each record in the database. This provides uniqueness for the column or set of columns.
+
+A Primary key constraint has automatic unique constraint defined on it. But not, in the case of Unique Key.
+
+There can be many unique constraint defined per table, but only one Primary key constraint defined per table.
+
+Primary key is used to identify each table row uniquely, while a Unique Key prevents duplicate values in a table column.
+
+7. What is the difference between UNIQUE and PRIMARY KEY constraints? 
+Ans. A table can have only one PRIMARY KEY whereas there can be any number of UNIQUE keys.
+
+The primary key cannot contain Null values whereas Unique key can contain Null values.
+
+Given below are few differences:
+
+The primary key can be only one on the table while unique keys can be multiple.
+The primary key cannot hold null value at all while unique key can hold one null value per column.
+The primary key is a clustered index while a unique key is a non-clustered index.
+
+8. What is a composite primary key?
+Ans. Primary key created on more than one column is called composite primary key.
+
+difference between MINUS vs INTERSECT ?
+
+MINUS returns rows from the first table, which does not exist in the second table.
+INTERSECT returns only the common rows in both the tables.
+
+difference between inner join vs INTERSECT ?
+
+INNER JOIN relies on a shared column or field to connect tables, while INTERSECT works based on the structure of SELECT statements. 
+INNER JOIN usually generates a larger dataset, weaving together information from different sources, while INTERSECT produces a smaller dataset featuring only shared elements.
+
+What is the Difference Between Cross Join and Inner Join? 
+
+inner join matches all records between tables but only returns matching values. It is the intersection of two tables. 
+The cross join will display all the rows of both tables.
+
+What is the difference between UNION join and intersection?
+
+The SQL standard defines the following three set operations: 
+UNION : Combine all results from two query blocks into a single result, omitting any duplicates. 
+INTERSECT : Combine only those rows which the results of two query blocks have in common, omitting any duplicates.
+
+9. What is a stored procedure?
+
+Stored Procedure is a function consists of many SQL statement to access the database system. Several SQL statements are consolidated into a stored procedure and it will execute them whenever and wherever it is required.
+
+10. What is a trigger?
+
+A DB trigger is a code or programs that automatically execute with response to some event on a table or view in a database. Mainly, trigger helps to maintain the integrity of the database.
+
+Example: When a new student is added to the student database, new records should be created in the related tables like Exam, Score and Attendance tables.
+
+11. What is the difference between DELETE, TRUNCATE and DROP commands?
+
+DELETE removes some or all rows from a table based on the condition. It can be performed Rollback and Commit after the delete statement.
+
+TRUNCATE is a DML command it removes ALL rows from a table by de-allocating the memory pages. The operation cannot be Rollback and Commit. also
+ 
+truncate is much faster than deleting rows one by one, particularly for large tables.
+
+DROP command removes a table from the database completely and operation cannot be Rollback..
+
+12. What is Datawarehouse?
+
+Datawarehouse is a central repository of data from multiple sources of information. Those data are consolidated, transformed and made available for the mining and online processing. Warehouse data have a subset of data called Data Marts.
+
+13. What is Online Transaction Processing (OLTP)?
+
+The basic difference between OLTP and OLAP is that OLTP is an online database modifying system, whereas, OLAP is an online database query answering system.
+
+Online Transaction Processing (OLTP) manages transaction based applications which can be used for data entry, data retrieval and data processing. OLTP makes data management simple and efficient. Unlike OLAP systems goal of OLTP systems is serving real-time transactions.
+
+Example – Bank Transactions on a daily basis
+
+OLTP and OLAP both are the online processing systems. OLTP is a transactional processing while OLAP is an analytical processing system. OLTP is a system that manages transaction-oriented applications on the internet for example, ATM. OLAP is an online system that reports to multidimensional analytical queries like financial reporting, forecasting, etc. The basic difference between OLTP and OLAP is that OLTP is an online database modifying system, whereas, OLAP is an online database query answering system.
+
+14. What does UNION do? What is the difference between UNION and UNION ALL?
+
+UNION merges the contents of two structurally-compatible tables into a single combined table. 
+
+The difference between UNION and UNION ALL is that 
+
+UNION will omit duplicate records 
+whereas 
+UNION ALL will include duplicate records.
+
+It is important to note that the performance of UNION ALL will typically be better than UNION, since UNION requires the server to do the additional work of removing any duplicates. So, in cases where is is certain that there will not be any duplicates, or where having duplicates is not a problem, use of UNION ALL would be recommended for performance reasons.
+
+Having Clause :-
+
+The HAVING clause was added to SQL because the WHERE keyword could not be used with aggregate functions.
+
+15. What is the use of NVL function?
+
+The NVL function is used to replace NULL values with another or given value. Example is –
+
+NVL(Value, replace value)
+
+16. DDL,DML,DCL
+
+DDL (Data Definition Language) – It allows you to perform various operations on the database such as CREATE, ALTER and DELETE objects.
+DML ( Data Manipulation Language) – It allows you to access and manipulate data. It helps you to insert, update, delete and retrieve data from the database.
+DCL ( Data Control Language) – It allows you to control access to the database. Example – Grant, Revoke access permissions.
+
+17. What are privileges and Grants?
+
+Privileges are the rights to execute SQL statements – means Right to connect and connect. Grants are given to the object so that objects can be accessed accordingly. Grants can be provided by the owner or creator of an object.
+
+18. What is the difference between $ORACLE_BASE and $ORACLE_HOME?
+
+ORACLE_BASE is the main or root directory of an oracle 
+whereas 
+ORACLE_HOME is located beneath base folder in which all oracle products reside.
+
+19. Difference between varchar and varchar2 data types?
+
+Varchar can store upto 2000 bytes and varchar2 can store upto 4000 bytes. Varchar will occupy space for NULL values and Varchar2 will not occupy any space. Both are differed with respect to space.
+
+VARCHAR is reserved by Oracle to support distinction between NULL and empty string in future, as ANSI standard prescribes.
+VARCHAR2 does not distinguish between a NULL and empty string, and never will.
+
+If you rely on empty string and NULL being the same thing, you should use VARCHAR2
+
+Vacrhar2 Will reserve space according to the length of the input string whereas Varchar will occupy space as defined initially. 
+
+20. What are the properties of a transaction?
+Ans. Generally, these properties are referred as ACID properties. They are:
+
+Atomicity   Consistency    Isolation      Durability.
+
+21. Give the order of SQL SELECT?
+Ans. Order of SQL SELECT clauses is: SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY. Only the SELECT and FROM clause are mandatory.
+
+22. What is Normalization?
+Ans. The process of table design to minimize the data redundancy is called normalization. We need to divide a database into two or more table and define relationships between them.
+
+23. What is Normalization? How many Normalization forms are there?
+
+Normalization is used to organize the data in such manner that data redundancy will never occur in the database and avoid insert, update and delete anomalies.
+
+There are 5 forms of Normalization
+
+First Normal Form (1NF): It removes all duplicate columns from the table. Creates table for related data and identifies unique column values
+Second Normal Form (2NF): Follows 1NF and creates and places data subsets in an individual table and defines relationship between tables using primary key
+Third Normal Form (3NF): Follows 2NF and removes those columns which are not related through primary key
+Fourth Normal Form (4NF): Follows 3NF and do not define multi-valued dependencies. 4NF also known as BCNF
+
+24. MERGER?
+
+The Oracle MERGE statement selects data from one or more source tables and updates or inserts it into a target table. The MERGE statement allows you to specify a condition to determine whether to update data from or insert data into the target table.
+
+25. What is the difference between SUBSTR & INSTR functions?
+
+Ans: SUBSTR function returns the sub-part identified by numeric values from the provided string.
+Example: [Select SUBSTR (‘India is my country’, 1, 4) from dual] will return “Indi”.
+
+INSTR will return the position number of the sub-string within the string.
+Example: [SELECT INSTR (‘India is my country’, ‘a’) from dual] will return 5.
+
+26 Why do we use COALESCE function in Oracle?
+
+Ans: COALESCE function is used to return the first non-null expression from the list of arguments provided in the expression. Minimum two arguments should be there in an expression.
+
+Syntax:  COALESCE (expr 1, expr 2, expr 3…expr n)
+
+27 What is the purpose of COALESCE and NVL functions?
+Answer:
+Both the functions are used to check for nulls in a specified column and replacing it with a different value in case the null check is successful.
+Sample usage:
+SELECT NVL(null, 12) FROM DUAL;
+SELECT COALESCE(null, null, 12) FROM DUAL;
+
+The COALESCE function can take in multiple arguments while NVL takes in two arguments.
+
+28. What is the quickest way to fetch the data from a table?
+
+Ans: The quickest way to fetch the data would be to use ROWID in the SQL Query.
+
+29. What do you mean by a database transaction & what all TCL statements are available in Oracle?
+
+Ans: Transaction occurs when a set of SQL statements are executed in one go. To control the execution of these statements, Oracle has introduced TCL i.e. Transaction Control Statements that use a set of statements.
+
+The set of statements include:
+
+COMMIT: Used to make a transaction permanent.
+ROLLBACK: Used to roll back the state of DB to last the commit point.
+SAVEPOINT: Helps to specify a transaction point to which rollback can be done later.
+
+30. What do you understand by a database object? Can you list a few of them?
+
+Ans: An object used to store the data or references of the data in a database is known as a Database object.
+The database consists of various types of DB objects such as tables, views, indexes, constraints, stored procedures, triggers etc.
+
+31. What do you understand by database schema and what does it hold?
+
+Ans: Schema is a collection of database objects owned by a database user who can create or manipulate new objects within this schema.
+The schema can contain any DB objects like table, view, indexes, clusters, stored procs, functions etc
+
+32. What is the main difference between SQL and PL/SQL?
+Ans: SQL is a query language that allows you to issue a single query or execute a single insert/update/delete whereas PL/SQL is Oracle’s “Procedural Language” SQL, which allows you to write a full program (loops, variables, etc.) to accomplish multiple operations such as selects/inserts/updates/deletes.
+
+33. Surrogate key.
+
+Ans:
+Surrogate (1) – Hall, Owlett and Todd (1976)
+A surrogate represents an entity in the outside world. The surrogate is internally generated by the system but is nevertheless visible to the user or application.
+Surrogate (2) – Wieringa and De Jonge (1991)
+A surrogate represents an object in the database itself. The surrogate is internally generated by the system and is invisible to the user or application.
